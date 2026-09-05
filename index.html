@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IQ.me</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <span class="brand">IQ.me</span>
+  <button id="settingsBtn" class="iconbtn" aria-label="Settings" title="Settings">⚙</button>
+</header>
+
+<div id="progressBar" class="progress" hidden><div id="progressFill" class="progress-fill"></div></div>
+<div id="timeBar" class="timebar" hidden><div id="timeFill" class="timebar-fill"></div></div>
+
+<main id="app"></main>
+
+<footer class="foot">
+  <span id="scoreTag">IQ.me score —</span>
+</footer>
+
+<!-- Settings panel -->
+<div id="settingsOverlay" class="overlay" hidden>
+  <div class="panel">
+    <h2>Settings</h2>
+
+    <label class="row">
+      <span>Time control</span>
+      <select id="timeControlSelect">
+        <option value="off">None — untimed</option>
+        <option value="30">30s per question</option>
+        <option value="15">15s per question</option>
+        <option value="60">60s per question</option>
+      </select>
+    </label>
+
+    <label class="row">
+      <span>Sound</span>
+      <select id="soundSelect">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </label>
+
+    <label class="row">
+      <span>Questions per drill</span>
+      <select id="lengthSelect">
+        <option value="10">10</option>
+        <option value="15" selected>15</option>
+        <option value="20">20</option>
+      </select>
+    </label>
+
+    <div class="row">
+      <button id="resetBtn" class="linklike">Reset profile</button>
+    </div>
+
+    <button id="closeSettings" class="btn">Done</button>
+  </div>
+</div>
+
+<!-- load order matters: Visual before Questions (questions.js calls into it),
+     Engine and Questions before the Core controller (app.js) -->
+<script src="visual.js"></script>
+<script src="questions.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
